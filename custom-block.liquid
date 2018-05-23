@@ -1,0 +1,72 @@
+<div class="smaple-section">
+  <div class="section-wrapper">
+    <div class="wrapper">
+      <div class="section-header">
+        {% if section.settings.main_header != blank %}
+          <h2><span class="line"></span>{{ section.settings.main_header }}</h2>
+        {% endif %}
+        {% if section.settings.section_info != blank %}
+          <p>{{ section.settings.section_info }}</p>
+        {% endif %}
+      </div>
+      <div class="info-container">
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.block_url }}" {% if block.settings.block_newtab %}target="_blank"{% endif %}>
+            <img src="{{ block.settings.block_image | img_url : 'master' }}">
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Sample Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "main_header",
+        "label": "Main Header",
+        "default": "Main Header"
+      },
+      {
+        "type": "textarea",
+        "id": "section_info",
+        "label": "Information"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Block Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "block_image",
+            "label": "Block Image"
+          },
+          {
+            "type": "url",
+            "id": "block_url",
+            "label": "Block Url"
+          },
+          {
+            "type": "checkbox",
+            "id": "block_newtab",
+            "label": "Open link in new tab",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Sample Section",
+        "category": "_Custom Sections"
+      }
+    ]
+  }
+{% endschema %}
+
+
+Add CommentColl
